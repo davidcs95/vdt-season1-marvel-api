@@ -63,7 +63,12 @@ describe('GET /characters/id', function(){
     context('Quando tenho um personagem cadastrado', function(){
 
         before(function(){
-            // todo
+
+            //Busca e remoção de personagem implementada devido o não reset do ambiente
+            // cy.searchCharacters(tonyStark.name).then(function(response){
+            //     cy.deleteCharacterById(response.body[0]._id)
+            // })
+            cy.searchAndDeleteCharacters(tonyStark.name)
             cy.postCharacter(tonyStark).then(function(response){
                 Cypress.env('characterId', response.body.character_id)
             })

@@ -10,6 +10,8 @@ describe('POST /characters', function(){
             active: true
         }
 
+        //Busca e remoção de personagem implementada devido o não reset do ambiente rodando pela interface do cypress
+        cy.searchAndDeleteCharacters(character.name)
         cy.postCharacter(character)
             .then(function(response){
                 expect(response.status).to.eql(201)
@@ -30,6 +32,7 @@ describe('POST /characters', function(){
         }
 
         before(function(){
+            cy.searchAndDeleteCharacters(character.name)
             cy.postCharacter(character)
                 .then(function(response){
                     expect(response.status).to.eql(201)

@@ -122,6 +122,14 @@ Cypress.Commands.add('searchCharacters', function(characterName){
     })
 })
 
+Cypress.Commands.add('searchAndDeleteCharacters', function(characterName){
+    cy.searchCharacters(characterName).then(function(response){
+        if(response.body.length > 0){
+            cy.deleteCharacterById(response.body[0]._id)
+        }
+    })
+})
+
 Cypress.Commands.add('populateCharacters', function(characters){
     characters.forEach(function(c){
         cy.postCharacter(c)
